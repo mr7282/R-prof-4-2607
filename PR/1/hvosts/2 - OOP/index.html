@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //классы
+        class className {
+            constructor(a = 10, b = 20) {
+                this.itemA = a;
+                this.itemB = b;
+                this.result = 0;
+            }
+
+            init() {
+                console.log('Hello. I am object of ' + this.constructor.name + ' class');
+                this.result = this.itemA + this.itemB;
+                console.log(this.result);
+            }
+        }
+
+        class subClass extends className {
+            constructor(a1, b1, c) {
+                super(a1, b1);
+                this.itemC = c;
+            } 
+        }
+
+        let obj = new className(1, 2); // {itemA: 1, itemB: 2}
+        let obj2 = new className(); // {itemA: 10, itemB: 20}
+        // obj.init(); //пошла жара
+
+
+    </script>
+</body>
+</html>
