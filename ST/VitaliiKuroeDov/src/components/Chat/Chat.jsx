@@ -33,12 +33,13 @@ export default class Chat extends Component {
                     type="text" 
                     autoFocus
                     name="" 
+                    placeholder="введи текст"
                     id="" 
                     value={this.state.input} 
                     onChange={this.handleChange} 
                     onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}/>
 
-                <button onClick={this.handleSendMessage}>Жмак</button>
+                <button onClick={this.handleSendMessage}>Йа кнопкен</button>
             </section>
         )
     }
