@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import { AppBar, Toolbar, IconButton, Typography, Button  } from '@material-ui/core' 
+import { AppBar, Toolbar, IconButton, Typography, Button, ButtonGroup } from '@material-ui/core' 
 import MenuIcon from '@material-ui/icons/Menu'
 export default class Header extends Component {
     render() {
         return(
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar variant="dense">
                     <IconButton
                         edge="start"
                         color="inherit"
@@ -15,6 +15,11 @@ export default class Header extends Component {
                     <Typography variant="h6" >
                         {this.props.title}
                     </Typography>
+                    <ButtonGroup className="button-group" variant="contained">
+                        <Button variant="outlined">Чаты</Button>
+                        <Button variant="outlined">Новый чат</Button>
+                    </ButtonGroup>
+
                 </Toolbar>
             </AppBar>
         )

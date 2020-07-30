@@ -52,7 +52,7 @@ export default class Chat extends Component {
     render() {
         const Messages = this.state.messages.map((item, index) => <Message key={index} message={item}/>)
         return(
-            <section className="container">
+            <section className="chat container">
                 <div className="message-list">
                     { Messages }
                 </div>
