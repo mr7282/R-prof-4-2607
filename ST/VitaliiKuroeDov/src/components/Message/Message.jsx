@@ -12,9 +12,12 @@ export default class Message extends Component {
     }
  
     render() {
+        const message = this.props.message.name === 'я' ? 
+            <span className="message">{this.props.message.name} : {this.props.message.text}</span> :
+            <span className="message bot">{this.props.message.name} : {this.props.message.text}</span>
         return(
             <div>
-                <span>{this.props.message.name} : {this.props.message.text}</span>
+                { message }
             </div>
         )
     }

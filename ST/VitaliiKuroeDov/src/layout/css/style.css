@@ -20,3 +20,12 @@ body {
     align-items: center;
     /* background: #fff; */
 }
+
+.message{
+    display: flex;
+    padding: .5rem .7rem;
+}
+
+.bot{
+    justify-content: end;
+}
