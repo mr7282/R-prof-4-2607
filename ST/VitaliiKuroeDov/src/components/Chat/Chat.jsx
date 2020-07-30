@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Message from '../Message/Message'
-import { Paper, Button, TextField } from '@material-ui/core' 
+import { Paper, Button, IconButton, TextField } from '@material-ui/core' 
+import SendIcon  from '@material-ui/icons/SendRounded'
 export default class Chat extends Component {
     state = {
         input: '',
@@ -52,23 +53,26 @@ export default class Chat extends Component {
         const Messages = this.state.messages.map((item, index) => <Message key={index} message={item}/>)
         return(
             <section className="container">
-                <Paper>
-                    <div className="message-list">
-                        { Messages }
-                    </div>
-                    <div className="chat-footer">
-                        <TextField 
-                            autoFocus
-                            size="small"
-                            label="введи текст"
-                            variant="outlined"
-                            value={this.state.input} 
-                            onChange={this.handleChange} 
-                            onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}/>
+                <div className="message-list">
+                    { Messages }
+                </div>
+                <div className="chat-footer">
+                    <TextField 
+                        autoFocus
+                        fullWidth="true"
+                        size="small"
+                        label="введи текст"
+                        variant="outlined"
+                        value={this.state.input} 
+                        onChange={this.handleChange} 
+                        onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}/>
 
-                        <Button color="primary" onClick={() => this.handleClick(this.state.input)}>Йа кнопкен</Button>
-                    </div>
-                </Paper>
+                    <IconButton
+                        color="primary" 
+                        onClick={() => this.handleClick(this.state.input)}>
+                            <SendIcon/>
+                    </IconButton>
+                </div>
             </section>
         )
     }

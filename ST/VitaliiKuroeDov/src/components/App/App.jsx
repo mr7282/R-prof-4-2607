@@ -2,6 +2,7 @@ import React, { Component, Fragment} from 'react'
 import Header from '../Header/Header'
 import Chat from '../Chat/Chat'
 import '../../layout/css/style.css'
+import {MuiThemeProvider} from '@material-ui/core' 
 
 export default class App extends Component {
 
@@ -12,10 +13,12 @@ export default class App extends Component {
     render(){
         return(
             <Fragment>
-                <Header title={this.state.title}/>
-                <main>
-                    <Chat/>
-                </main>
+                <MuiThemeProvider>
+                    <Header title={this.state.title}/>
+                    <main>
+                        <Chat/>
+                    </main>
+                </MuiThemeProvider>
             </Fragment>
         )
     }
