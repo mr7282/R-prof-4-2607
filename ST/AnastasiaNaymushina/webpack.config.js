@@ -5,19 +5,12 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './index.js',
+        main: path.resolve(__dirname, 'src', 'index.js'),
     },
-    context: path.resolve(__dirname, "static_src"),
-    output: {
-        path: path.resolve(__dirname, "static", "build"),
-        filename: 'app.js',
-    },
-
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: path.resolve(__dirname, "static_src"),
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
@@ -46,7 +39,7 @@ module.exports = {
         }),
         new HtmlPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, 'index.html')
+            template: path.resolve(__dirname, 'public', 'index.html')
         })
     ],
     devServer:{
