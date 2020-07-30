@@ -11,9 +11,12 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 0 1rem 0;
+    height: 70vh;
+    overflow-y: scroll;
 }
 .chat-footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* background: #fff; */
 }
