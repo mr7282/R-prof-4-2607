@@ -35,11 +35,11 @@ export default class Chat extends Component {
         this.setState({input: event.target.value})
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
         const currentMessage = this.state.messages
         const lastMessage = currentMessage[currentMessage.length -1]
 
-        if(lastMessage && lastMessage.name === 'я'){
+        if(prevState.messages.length < this.state.messages.length && lastMessage.name === 'я'){
             setTimeout(() => {
                 this.setState(state => ({
                     ...state,
@@ -59,7 +59,7 @@ export default class Chat extends Component {
                 <div className="chat-footer">
                     <TextField 
                         autoFocus
-                        fullWidth="true"
+                        fullWidth
                         size="small"
                         label="введи текст"
                         variant="outlined"

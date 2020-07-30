@@ -37,7 +37,7 @@ main{
     display: flex;
     flex-direction: column;
     margin: 0 0 1rem 0;
-    height: 70vh;
+    height: 75vh;
     overflow-y: scroll;
 }
 .chat-footer{
@@ -47,11 +47,19 @@ main{
     /* background: #fff; */
 }
 
-.message{
+.message-block{
     display: flex;
     padding: .5rem .7rem;
 }
 
+.message{
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    display: flex;
+    background-color: orange;
+    color: #fff;
+}
+
 .bot{
-    justify-content: end;
+    margin: 0 0 0 auto;
 }
