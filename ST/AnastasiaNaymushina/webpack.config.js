@@ -1,5 +1,7 @@
 const path = require("path");
 const webpack = require('webpack');
+const MiniCss = require('mini-css-extract-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -30,11 +32,22 @@ module.exports = {
                 },
 
             },
+             {
+                test: /\.css$/,
+                use: [MiniCss.loader, 'css-loader']
+            }
 
         ],
     },
-    plugins:[
-
+    plugins: [
+        new MiniCss({
+            filename: path.join('style', '[name].css'),
+            chunkFilename: '[id].css'
+        }),
+        new HtmlPlugin({
+            filename: 'index.html',
+            template: path.resolve(__dirname, 'public', 'index.html')
+        })
     ],
     devServer:{
         port: 3000,
