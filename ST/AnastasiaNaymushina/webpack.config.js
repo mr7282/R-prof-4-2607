@@ -46,7 +46,7 @@ module.exports = {
         }),
         new HtmlPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, 'public', 'index.html')
+            template: path.resolve(__dirname, 'index.html')
         })
     ],
     devServer:{
