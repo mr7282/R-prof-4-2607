@@ -1,22 +1,33 @@
 import React, { Component } from 'react'
-
+import Message from '../Message/Message'
+import { Paper, Button, IconButton, TextField } from '@material-ui/core' 
+import SendIcon  from '@material-ui/icons/SendRounded'
 export default class Chat extends Component {
     state = {
         input: '',
         messages: []
     }
 
-    handleSendMessage = () => {
+    handleSendMessage = (value) => {
+        
         this.setState(state => ({
             ...state,
-            messages: [...this.state.messages, this.state.input ]
+            messages: [...this.state.messages, {name: 'я', text: value} ]
         }))
         this.setState({input: ''})
     }
 
+    handleClick = (value) => {
+        if (this.state.input !== '') {
+            this.handleSendMessage(value)
+        }
+    }
+
     handleKeyUp = (event) => {
-        if (event.keyCode === 13){
-            this.handleSendMessage()
+        if (this.state.input !== '') {
+            if (event.keyCode === 13){
+                this.handleSendMessage(this.state.input)
+            }    
         }
     }
 
@@ -24,22 +35,44 @@ export default class Chat extends Component {
         this.setState({input: event.target.value})
     }
 
-    render() {
-        const Messages = this.state.messages.map((item, index) => <h3 key={index}>{item}</h3>)
-        return(
-            <section>
-                { Messages }
-                <input 
-                    type="text" 
-                    autoFocus
-                    name="" 
-                    placeholder="введи текст"
-                    id="" 
-                    value={this.state.input} 
-                    onChange={this.handleChange} 
-                    onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}/>
+    componentDidUpdate(prevProps, prevState) {
+        const currentMessage = this.state.messages
+        const lastMessage = currentMessage[currentMessage.length -1]
 
-                <button onClick={this.handleSendMessage}>Йа кнопкен</button>
+        if(prevState.messages.length < this.state.messages.length && lastMessage.name === 'я'){
+            setTimeout(() => {
+                this.setState(state => ({
+                    ...state,
+                    messages: [...this.state.messages, {name: 'Бот', text: `Бот компот`} ]
+                }))
+            }, 1000)      
+        }
+    }
+
+    render() {
+        const Messages = this.state.messages.map((item, index) => <Message key={index} message={item}/>)
+        return(
+            <section className="chat container">
+                <div className="message-list">
+                    { Messages }
+                </div>
+                <div className="chat-footer">
+                    <TextField 
+                        autoFocus
+                        fullWidth
+                        size="small"
+                        label="введи текст"
+                        variant="outlined"
+                        value={this.state.input} 
+                        onChange={this.handleChange} 
+                        onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}/>
+
+                    <IconButton
+                        color="primary" 
+                        onClick={() => this.handleClick(this.state.input)}>
+                            <SendIcon/>
+                    </IconButton>
+                </div>
             </section>
         )
     }
