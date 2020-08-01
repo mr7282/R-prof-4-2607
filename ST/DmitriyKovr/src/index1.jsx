@@ -27,7 +27,7 @@ const MessageField = (props) => {
                               
 ReactDom.render(
     [element, element2, <Component content={ content } />, <MessageField messages={ messages } />],
-    document.getElementById('root'),
+    document.getElementById('app'),
 );
 
 console.log('Hello');
