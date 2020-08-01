@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from './components/App.jsx';
 
 let messages = ["Hello", "How are you?"];
 
@@ -10,6 +11,7 @@ const MessageField = props => {
 };
 
 ReactDOM.render(
-    <MessageField messages={messages} />,
+    // <MessageField messages={messages} />,
+    <App/>,
     document.getElementById("root")
 );
