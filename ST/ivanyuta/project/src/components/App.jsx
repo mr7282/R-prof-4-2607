@@ -29,8 +29,8 @@ export default class App extends React.Component {
         return (
             <div>
                 <h1>{this.state.text}</h1>
-                <Child counter= {this.state.counter}/>
-                <button onClick = {this.handlerClick}/>+1</button>
+                <Child counter= {this.state.counter} />
+                <button onClick = {this.handlerClick}>+1</button>
             </div>
         )
 
