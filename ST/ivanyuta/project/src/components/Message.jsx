@@ -8,6 +8,13 @@ export default class Message extends React.Component {
     }
 
     render() {
-        return <div> <span>{this.props.author}</span>: {this.props.text}</div>
+        return <div
+            className="message"
+            style={ {alignSelf: this.props.author === "M'r Robot" ?
+                'flex-start': 'flex-end' } }
+        >
+            <div>{this.props.text}</div>
+            <div className="message-sender"> { this.props.author } </div>
+        </div>
     }
 }
