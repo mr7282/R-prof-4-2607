@@ -1,43 +1,16 @@
-import React from "react";
-import ReactDOM, { render } from "react-dom"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import bootstrap from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './layouts/style.css';
+import App from './App';
 
 
-let messages = ['Совсем', 'круто работаем', 'с React', 'Как с массивом!'];
-
-const MessageComponent = (props) => <div>{props.text}</div>;
-
-const MessageField = (props) => {
-    return props.messages.map(message => <MessageComponent text={message} />);
-};
-
-
-class ButtonSend extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.pushArray = this.pushArray.bind(this);
-    }
-
-    pushArray() {
-        messages.push("Нормально!");
-    }
-
-
-
-    render() {
-        return (<p>
-            <h2>{MessageField}</h2>
-            <button onClick={this.pushArray}>Добавить</button>
-        </p>);
-    }
-}
 
 
 ReactDOM.render(
-    <MessageField messages={messages} />,
-    document.getElementById("root"),
-);
-ReactDOM.render(
-    <ButtonSend />,
-    document.getElementById("buttonSend"),
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
