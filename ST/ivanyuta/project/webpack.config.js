@@ -18,6 +18,10 @@ module.exports = {
                         ["@babel/plugin-proposal-class-properties", {"loose": true}]
                     ]
                 }
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader',
             }
         ]
     },
