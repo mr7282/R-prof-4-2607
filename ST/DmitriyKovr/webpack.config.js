@@ -17,6 +17,9 @@ module.exports = {
         modules: [ `${__dirname}/src/components`, 'node_modules'],
         extensions: ['.js', '.jsx'],
     },
+    
+    devtool: 'cheap-inline-module-source-map',
+    
     module: {
         rules: [
             {
@@ -47,6 +50,6 @@ module.exports = {
     devServer: {
         port: 3000,
         hot: true,
-        open: false
+        open: false,
     }
 }
