@@ -10,28 +10,25 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './router.jsx';
 
+import { Provider } from 'react-redux';
+import initStore from './store/store.js';
+
 const appContainer = document.querySelector('#app');
 //const theme = {};
 
 let theme = createMuiTheme();
 //theme = responsiveFontSizes(theme);
 
+
 ReactDom.render(
-    <BrowserRouter>
-        <ThemeProvider theme={ theme }>
-            <div className='h-100 w-100'>
-                <Router />
-            </div>
-        </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={ initStore() }>
+        <BrowserRouter>
+            <ThemeProvider theme={ theme }>
+                <div className='h-100 w-100'>
+                    <Router />
+                </div>
+            </ThemeProvider>
+        </BrowserRouter>
+    </Provider> 
     ,appContainer
 );
-
-
-/*
-ReactDom.render(
-    <MessageField />
-    ,document.querySelector('#app')
-    
-);
-*/
