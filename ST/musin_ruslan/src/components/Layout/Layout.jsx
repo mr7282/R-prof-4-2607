@@ -6,7 +6,7 @@ import "./style.css"
 
 export default class Layout extends React.Component {
     render() {
-        return <div>
+        return <div className="main">
                     <Header/>
                     <div className="content">
                     <ChatList/>
