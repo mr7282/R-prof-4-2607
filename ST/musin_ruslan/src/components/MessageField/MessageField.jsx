@@ -37,8 +37,8 @@ export default class MessageField extends React.Component {
         });
     };
 
-    componentDidUpdate() {
-        if (this.state.messages.length % 2 === 1) {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.messages.length < this.state.messages.length && this.state.messages[this.state.messages.length - 1].author === "'mr7282'") {
             setTimeout(() => this.setState(
                 {messages: [ ...this.state.messages, {author: "'robot'",  text: "Don't touch me " +  this.state.messages[this.state.messages.length-1].author + "! I am robot!"}]}
             ), 1000);
