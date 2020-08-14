@@ -19,7 +19,7 @@ export default class Layout extends React.Component {
                     <Header chatId={ this.props.chatId } chat="Chat "/>
                     <div className="content">
                         <ChatList/>
-                        <MessageField />
+                        <MessageField chatId={ this.props.chatId } />
                     </div>
             </div>
     }
