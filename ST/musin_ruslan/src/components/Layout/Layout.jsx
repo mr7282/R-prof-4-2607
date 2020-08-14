@@ -52,16 +52,30 @@ export default class Layout extends React.Component {
         })
     };
 
+    addChat = (title) => {
+        const { chats } = this.state;
+
+        const chatId = Object.keys(chats).length + 1;
+        this.setState({
+            chats: {...chats,
+                [chatId]: {title: title, messageList:[]},}
+        })
+    };
+
     render() {
         return <div className="main">
                     <Header chatId={ this.props.chatId } chat="Chat "/>
                     <div className="content">
-                        <ChatList chats={ this.state.chats }/>
+                        <ChatList
+                            chats={ this.state.chats }
+                            addChat={ this.addChat }
+                        />
                         <MessageField
-                        chatId={ this.props.chatId }
-                        chats={ this.state.chats }
-                        messages={ this.state.messages }
-                        sendMessage={ this.sendMessage } />
+                            chatId={ this.props.chatId }
+                            chats={ this.state.chats }
+                            messages={ this.state.messages }
+                            sendMessage={ this.sendMessage }
+                        />
                     </div>
             </div>
     }
