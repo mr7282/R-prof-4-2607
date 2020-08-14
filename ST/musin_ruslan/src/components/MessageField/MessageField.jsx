@@ -9,26 +9,15 @@ import "./style.css"
 export default class MessageField extends React.Component {
     static propTypes = {
         chatId: PropTypes.number.isRequired,
-    }
-
-    state = {
-        chats: {
-            1: {title: "Chat 1", messageList: [1]},
-            2: {title: "Chat 2", messageList: [2]},
-            3: {title: "Chat 3", messageList: [1]},
-            4: {title: "Chat 4", messageList: [2]},
-            5: {title: "Chat 5", messageList: [1]},
-        },
-        messages: {
-           1: { text: " Hello!", author: "'robot'"},
-           2: { text: " How are you?", author: "'robot'"},
-        },
-        input: "",
+        messages: PropTypes.object.isRequired,
+        chats: PropTypes.object.isRequired,
+        sendMessage: PropTypes.func.isRequired,
     };
 
-    // handleClick = (message) => {
-    //     this.sendMessage(message);
-    // };
+    state = {
+        input: '',
+    };
+
 
     handleChange = (event) => {
         this.setState({  [event.target.name] : event.target.value });
@@ -40,55 +29,32 @@ export default class MessageField extends React.Component {
         }
     };
 
-    // sendMessage = (message) => {
-    //     this.setState({messages: [ ...this.state.messages, {author: "'mr7282'", text: message}], input: "",
-    //     });
-    // };
-
-    componentDidUpdate(prevProps, prevState) {
-        const {messages} = this.state;
-        if (Object.keys(prevState.messages).length < Object.keys(messages).length && Object.values(messages)[Object.values(messages).length - 1].author === "'mr7282'") {
-            setTimeout(() =>
-            this.handleSendMessage("Don't touch me! I'm robot", "'robot'"), 1000);
-
-        }
-    };
 
     handleSendMessage = (message, author) => {
-        const { messages, chats, input } = this.state;
-        const { chatId } = this.props;
-
-        if (input.length > 0 || author === "'robot'") {
-            const messageId = Object.keys(messages).length + 1;
-            this.setState({
-                messages: {...messages,
-                    [messageId]: {text: message, author: author}},
-                chats: {...chats,
-                [chatId]: { ...chats[chatId],
-                                messageList: [...chats[chatId]["messageList"], messageId]}},
-            })
+        if (this.state.input.length > 0 || author === "'robot'") {
+            this.props.sendMessage(message, author);
         }
+
         if (author === "'mr7282'") {
-            this.state({input: ""})
+            this.setState({input: ""})
         }
     };
 
     render() {
-        const { messages, chats } = this.state;
-        const { chatId } = this.props;
+        const { chatId, messages, chats } = this.props;
 
-        const messageElements = chats[chatId].messageList.map((messageId, index) => (
+        const messageElements = chats[chatId].messageList.map( messageId => (
             <Message
-                key={ index }
+                key={ messageId }
                 text={ messages[messageId].text }
                 author={ messages[messageId].author}
             />));
 
         return <div>
-                    <div id="name" className="message-field">
+                    <div key="messageElements" id="name" className="message-field">
                         { messageElements }
                     </div>
-                    <div style={ { width: '100%', display: 'flex' } }>
+                    <div key='textInput' style={ { width: '100%', display: 'flex' }} >
                         <TextField
                             name="input"
                             fullWidth={ true }
