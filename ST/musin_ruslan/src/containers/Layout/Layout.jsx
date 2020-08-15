@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MessageField from "../MessageField/MessageField"
-import ChatList from "../ChatList/ChatList"
-import Header from "../Header/Header"
-import "./style.css"
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
+import MessageField from "../MessageField/MessageField";
+import ChatList from "../ChatList/ChatList";
+import Header from "../Header/Header";
+import { sendMessage } from "../../Actions/messageActions";
+import "./style.css";
 
-export default class Layout extends React.Component {
+class Layout extends React.Component {
     static propTypes = {
         chatId: PropTypes.number,
+        sendMessage: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -15,13 +19,6 @@ export default class Layout extends React.Component {
     };
 
     state = {
-        chats: {
-            1: {title: "Chat 1", messageList: [1]},
-            2: {title: "Chat 2", messageList: [2]},
-            3: {title: "Chat 3", messageList: [1]},
-            4: {title: "Chat 4", messageList: [2]},
-            5: {title: "Chat 5", messageList: [1]},
-        },
         messages: {
            1: { text: " Hello!", author: "'robot'"},
            2: { text: " How are you?", author: "'robot'"},
@@ -39,17 +36,15 @@ export default class Layout extends React.Component {
     };
 
     sendMessage = (message, author) => {
-        const { messages, chats } = this.state;
+        const { messages } = this.state;
         const { chatId } = this.props;
 
         const messageId = Object.keys(messages). length + 1;
         this.setState({
             messages: {...messages,
                 [messageId]: {text: message, author: author}},
-            chats: {...chats,
-            [chatId]: { ...chats[chatId],
-                            messageList: [...chats[chatId]["messageList"], messageId]}},
-        })
+        });
+        this.props.sendMessage(messageId, message, author, chatId);
     };
 
     addChat = (title) => {
@@ -64,15 +59,11 @@ export default class Layout extends React.Component {
 
     render() {
         return <div className="main">
-                    <Header chatId={ this.props.chatId } chat="Chat "/>
+                    <Header chatId={ this.props.chatId }/>
                     <div className="content">
-                        <ChatList
-                            chats={ this.state.chats }
-                            addChat={ this.addChat }
-                        />
+                        <ChatList />
                         <MessageField
                             chatId={ this.props.chatId }
-                            chats={ this.state.chats }
                             messages={ this.state.messages }
                             sendMessage={ this.sendMessage }
                         />
@@ -80,3 +71,9 @@ export default class Layout extends React.Component {
             </div>
     }
 }
+
+const mapStateToProps = ({}) => ({});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
