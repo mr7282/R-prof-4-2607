@@ -20,15 +20,6 @@ class Layout extends React.Component {
         input: "",
     };
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     const {messages} = this.state;
-    //     if (Object.keys(prevState.messages).length < Object.keys(messages).length && Object.values(messages)[Object.values(messages).length - 1].author === "'mr7282'") {
-    //         setTimeout(() =>
-    //         this.sendMessage("Don't touch me! I'm robot", "'robot'"), 1000);
-
-    //     }
-    // };
-
     render() {
         return <div className="main">
                     <Header chatId={ this.props.chatId }/>

@@ -12,9 +12,9 @@ export default function messageReducer(store = initialStore, action) {
     switch (action.type) {
         case SEND_MESSAGE: {
             return update(store, {
-                messages: { $merge: { [messageId]: {
+                messages: { $merge: { [action.addMessageId]: {
                     text: action.text,
-                    author: "'mr7282'"
+                    author: action.author,
                 }}},
             });
         }

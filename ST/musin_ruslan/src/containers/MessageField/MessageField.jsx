@@ -32,11 +32,11 @@ class MessageField extends React.Component {
     };
 
 
-    handleSendMessage = (chatId, text, author, ) => {
+    handleSendMessage = (chatId, text, author) => {
         if (this.state.input.length > 0 || author === "'robot'") {
             const addMessageId = Object.keys(this.props.messages).length + 1
             this.props.addMessage(chatId, addMessageId);
-            this.props.sendMessage(text, author);
+            this.props.sendMessage(text, author, addMessageId, chatId);
         }
 
         if (author === "'mr7282'") {
@@ -48,7 +48,7 @@ class MessageField extends React.Component {
         const {messages} = this.props;
         const { chats } = this.props;
         const messagesArr = chats[this.props.chatId].messageList;
-        console.log(messagesArr)
+        console.log(this.props.messages)
 
         const messageElements = messagesArr.map( messageId => (
             <Message
