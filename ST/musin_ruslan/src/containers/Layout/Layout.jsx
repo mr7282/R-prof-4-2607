@@ -24,7 +24,7 @@ class Layout extends React.Component {
         return <div className="main">
                     <Header chatId={ this.props.chatId }/>
                     <div className="content">
-                        <ChatList />
+                        <ChatList chatId={ this.props.chatId }/>
                         <MessageField chatId={ this.props.chatId }/>
                     </div>
             </div>

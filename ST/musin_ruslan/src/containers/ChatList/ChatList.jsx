@@ -12,7 +12,6 @@ import { addChat } from "../../Actions/chatActions";
 class ChatList extends React.Component {
     static propTypes = {
         chats: PropTypes.object.isRequired,
-        addChat: PropTypes.func.isRequired,
     };
 
     state = {
@@ -31,7 +30,7 @@ class ChatList extends React.Component {
 
     handleAddChat = () => {
         if (this.state.input.length > 0) {
-            this.props.addChat(this.state.input);
+            this.props.addChat(this.state.input, this.props.chatId);
             this.setState({ input: '' });
         }
     };
@@ -71,8 +70,8 @@ class ChatList extends React.Component {
     }
 }
 
-const mapStateToProps = ({ chatReducer, messageReducer }) => ({
-    chats: chatReducer.chats,
+const mapStateToProps = ({ messageReducer }) => ({
+    chats: messageReducer.chats,
     messages: messageReducer.messages,
 });
 
