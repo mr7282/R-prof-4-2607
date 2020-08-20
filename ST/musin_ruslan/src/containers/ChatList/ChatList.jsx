@@ -6,6 +6,7 @@ import { List, ListItem } from 'material-ui/List';
 import { TextField } from 'material-ui';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import PropTypes from "prop-types";
+import { push } from "connected-react-router";
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import { addChat } from "../../Actions/chatActions";
 
