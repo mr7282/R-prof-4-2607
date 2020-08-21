@@ -13,6 +13,7 @@ import { addChat } from "../../Actions/chatActions";
 class ChatList extends React.Component {
     static propTypes = {
         chats: PropTypes.object.isRequired,
+        push: PropTypes.func.isRequired,
     };
 
     state = {
@@ -36,16 +37,19 @@ class ChatList extends React.Component {
         }
     };
 
+    hendleNavigate = (link) => {
+        this.props.push(link);
+    };
+
 
     render() {
         const { chats } = this.props;
         const chatElements = Object.keys(chats).map(chatId => (
-            <Link key={ chatId } to={ `/chat/${chatId}` }>
-                <ListItem
-                primaryText={ chats[chatId].title}
-                // rightIcon={<CommunicationChatBubble />}
-                />
-            </Link>
+                    <ListItem
+                    onClick={ () => this.hendleNavigate(`/chat/${chatId}`)}
+                    primaryText={ chats[chatId].title}
+                    // rightIcon={<CommunicationChatBubble />}
+                    />
         ));
 
         return (
@@ -76,7 +80,7 @@ const mapStateToProps = ({ messageReducer }) => ({
     messages: messageReducer.messages,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addChat },
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat, push },
     dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps) (ChatList);
